@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'shop',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 
 ]
 
@@ -127,3 +128,18 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CART_SESSION_ID='cart'
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'fj5wtdtyt6vnqkrf'
+BRAINTREE_PUBLIC_KEY = 'xm39jz9d247t7bp3'
+BRAINTREE_PRIVATE_KEY = '1d79a601a6ef45c00436382571083f23'
+
+from braintree import Configuration, Environment
+
+Configuration.configure(
+    Environment.Sandbox,
+    # Environment.Production,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
+STATIC_ROOT=os.path.join(BASE_DIR,'static/')
